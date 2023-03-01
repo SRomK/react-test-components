@@ -13,7 +13,7 @@ export default class App extends React.Component {
     return (
         <div className="App">
            
-            <Router></Router>
+            <Router />
 
         </div>
     );
