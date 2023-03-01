@@ -29,34 +29,56 @@ export default class Login extends React.Component {
 
   //Functions/Methods ob the object class component Login
 
-  //isFormOk() {}
+  //Check if email has the right syntax
+  isEmailOk(email) {
+		return EMAIL_REGEX.test(email); 
+	}
+
   // Make sure that the email and the password are filled
+  isFormOk() {
+		// Make sure that the email and the password are filled
+		const { email, password } = this.state;
+		this.setState({ emailError: null, passwordError: null, emailErrorMessage: "" });
 
-  //is EmailOk() {}
+		let isFormOk = true;
+		// Check Email
+		if (!this.isEmailOk(email)) {
+			this.setState({ emailErrorMessage: "You must input email" });
+			isFormOk = false;
+		}
+		
+		// Check Password
+		if (password.trim().length < 8) {
+			this.setState({ passwordError: "You must input password" });
+			isFormOk = false;
+		}
+		return isFormOk;
+	}
 
+  //
   onChange = (e) => {
    this.setState({ [e.target.name]: e.target.value });
    //console.log("event", e);
   };
 
-  formValidation = () => {
-    const {email, password} = this.state;
-    //use a flag
-    let isValid = true;
-    const errors = {};
+  // formValidation = () => {
+  //   const {email, password} = this.state;
+  //   //use a flag
+  //   let isValid = true;
+  //   const errors = {};
 
-    if(!EMAIL_REGEX.test(email)) {
-      errors.emailerror = "Email is not valid";
-      isValid = false;
-    }
-    if(password.trim().length < 8){
-      errors.passwordLength = "Password must be of length 8 or higher";
-      isValid = false;
-    }
+  //   if(!EMAIL_REGEX.test(email)) {
+  //     errors.emailerror = "Email is not valid";
+  //     isValid = false;
+  //   }
+  //   if(password.trim().length < 8){
+  //     errors.passwordLength = "Password must be of length 8 or higher";
+  //     isValid = false;
+  //   }
 
-    this.setState({errors});
-      return isValid;
-  }
+  //   this.setState({errors});
+  //     return isValid;
+  // }
 
   onSubmit = (e) => {
     const { email, password } = this.state;
@@ -66,6 +88,29 @@ export default class Login extends React.Component {
     
   }
   //HANDLES
+
+  handleChangeEmail = (e) => {
+		// Validate email
+    console.log('handlechangeemail')
+		const email = e.target.value;
+		if (!this.isEmailOk(email)) {
+			this.setState({emailError: "Please enter a correct email"}); 
+		} 
+		else {
+			this.setState({emailError: ""})
+		}
+			//return false;  
+		
+		// Save the value
+		this.setState({ email });
+	};
+
+	handleChangePassword = (e) => {
+		// Save the value
+		let password = e.target.value;
+		this.setState({ password });
+	};
+  
   //logic for showing password in InputAndormnt icon 
   handleClickShowPassword = (e) => {
 		let showPassword = this.state.showPassword;
@@ -79,7 +124,6 @@ export default class Login extends React.Component {
 
   //logic for eye icon next to password 
   getEyeIconClassname() {
-    console.log('geticon launch');
 		let cls = "mdi mdi-eye";
 		if (this.state.showPassword) 
 			cls += "-off";
@@ -104,18 +148,19 @@ export default class Login extends React.Component {
           className={styles.loginEmail}
           name="email"
           type="email"
-          error //logic to change state and show error
+          error={emailError}
+          //error //logic to change state and show error
           helperText={emailError}
           label="Email"
           variant="outlined"
-          //onChange={this.handleChangeEmail}
+          onChange={this.handleChangeEmail}
         />
         <TextField
           id="component-outlined"
           className={styles.loginPwd}
           name="password"
           type="password"
-          error //logic to change state and show error
+          //error //logic to change state and show error
           helperText={passwordError}
           label="Password"
           variant="outlined"
