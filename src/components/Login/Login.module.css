@@ -1,0 +1,109 @@
+#root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    height: 100%
+}
+
+label {
+    display: flex !important;
+    align-items: center  !important;
+    justify-content: center !important;
+}
+
+/*div containing everything*/
+#loginContainer {
+    width: 100% !important;
+    max-width: 100%;
+    background-color: #FFF !important;
+    height: 100% !important;
+}
+/*child of container, div containing the whole login*/
+.login {
+    display: flex;
+    flex-direction: column !important;
+    width: 400px;
+    max-width: calc(100% - 20px);
+    margin: auto;
+    padding: 5px;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
+
+/*Company logo*/
+.logo {
+    width: 400px;
+    height: 95px;
+    margin: 0 auto;
+    background-image: url('https://cloudfront.private-radar.com/img/logo/logo_login.png');
+    background-repeat: no-repeat;
+}
+
+/*BackOffice subtitle*/
+.subtitle {
+    text-align: center;
+    margin: 20px 0 30px;
+    font-size: 1.5em;
+}
+
+/*FormControl style*/
+.form {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+/*Textfield, email input style*/
+.loginEmail {
+    margin-top: 0 !important;
+}
+
+/*Textfield, password input style*/
+.loginPwd {
+    margin-top: 20px !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+}
+
+/* big blue sign in button */
+.loginBtn {
+    background-color: #1d70b8 !important;
+    color:#FFF !important;
+    margin: 1em 9em !important;
+    padding: 1.4em !important;
+    font-weight: bold !important;
+}
+
+.loginBtn:hover {
+    opacity: 0.8;
+}
+
+/*eye icon next to password */
+.viewPasswordIcon {
+    cursor: pointer;
+}
+
+/*span pointer*/
+#pointer {
+    cursor: pointer;
+}
+/*Responsiveness*/
+
+@media only screen and (max-width: 420px) {
+    .subtitle{
+        font-size: 1.2em;   
+    }
+    .loginBtn {
+        margin: 0 !important;
+    }
+	.logo {
+		transform: scale(0.7);
+        margin-left: -10%;
+	}
+}
