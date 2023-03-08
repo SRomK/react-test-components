@@ -1,0 +1,27 @@
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    display: flex;
+    background: #1D70B8;
+}
+
+.logoLink{
+    padding-left: 70px;
+    padding-top: 6px;
+    margin-right: 30px;
+}
+
+.navlink{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    color: #f8f8f8;
+    font-weight: 450;
+    margin: 0;
+}
+
+.alignIcon {
+    color: red !important;
+}
